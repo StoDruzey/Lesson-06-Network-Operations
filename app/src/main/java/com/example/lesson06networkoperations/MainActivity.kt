@@ -25,3 +25,12 @@ fun Fragment.pushFragment(counter: Int) {
         .addToBackStack(null)
         .commit()
 }
+
+fun Fragment.pushSecondFragment(){
+    (requireActivity() as MainActivity)
+        .supportFragmentManager
+        .beginTransaction()
+        .replace(R.id.container, CounterFragment.getInstance(counter))
+        .addToBackStack(null)
+        .commit()
+}
