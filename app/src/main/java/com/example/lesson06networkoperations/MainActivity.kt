@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.container, ListFragment())
+                .replace(R.id.container, FirstFragment())
                 .commit()
         }
     }
@@ -30,7 +30,7 @@ fun Fragment.pushSecondFragment(){
     (requireActivity() as MainActivity)
         .supportFragmentManager
         .beginTransaction()
-        .replace(R.id.container, CounterFragment.getInstance(counter))
+        .replace(R.id.container, FragmentSecond())
         .addToBackStack(null)
         .commit()
 }

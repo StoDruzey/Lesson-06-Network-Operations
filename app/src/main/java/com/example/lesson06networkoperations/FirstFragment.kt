@@ -26,8 +26,17 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         with(binding) {
-            button.setOnClickListener {  }
+
+            parentFragmentManager.setFragmentResultListener(
+                "result", viewLifecycleOwner
+            ) { _, bundle ->
+                textResult.text = bundle.getString("key")
+            }
+            button.setOnClickListener {
+                pushSecondFragment()
+            }
         }
     }
 

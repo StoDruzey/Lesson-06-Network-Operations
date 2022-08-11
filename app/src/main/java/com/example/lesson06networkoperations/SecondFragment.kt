@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.example.lesson06networkoperations.databinding.FragmentSecondBinding
@@ -34,7 +35,13 @@ class FragmentSecond : Fragment() {
             editText.addTextChangedListener {
                 textResult = it?.toString() ?: ""
             }
-            button.setOnClickListener {  }
+            button.setOnClickListener {
+                parentFragmentManager.setFragmentResult(
+                    "result",
+                    bundleOf("key" to textResult)
+                )
+                parentFragmentManager.popBackStack()
+            }
         }
     }
 
