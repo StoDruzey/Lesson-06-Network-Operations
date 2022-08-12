@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="30sp"
-        tools:text="some text"/>
+        android:text="fragment 1"/>
 
     <Button
         android:id="@+id/button"

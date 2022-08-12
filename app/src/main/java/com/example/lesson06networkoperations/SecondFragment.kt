@@ -30,15 +30,21 @@ class FragmentSecond : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            var textResult = ""
+//            var checkboxChecked = false
+            var checkboxChecked = requireArguments().getBoolean("second")
+            checkbox.isChecked = checkboxChecked
+//            var textResult = ""
 
-            editText.addTextChangedListener {
-                textResult = it?.toString() ?: ""
+//            editText.addTextChangedListener {
+//                textResult = it?.toString() ?: ""
+//            }
+            checkbox.setOnCheckedChangeListener { _, isChecked ->
+                checkboxChecked = isChecked
             }
             button.setOnClickListener {
                 parentFragmentManager.setFragmentResult(
                     "result",
-                    bundleOf("key" to textResult)
+                    bundleOf("key" to /*textResult*/checkboxChecked)
                 )
                 parentFragmentManager.popBackStack()
             }

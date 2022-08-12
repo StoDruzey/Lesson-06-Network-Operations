@@ -2,6 +2,7 @@ package com.example.lesson06networkoperations
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -26,11 +27,13 @@ fun Fragment.pushFragment(counter: Int) {
         .commit()
 }
 
-fun Fragment.pushSecondFragment(){
+fun Fragment.pushSecondFragment(isCheked: Boolean){
     (requireActivity() as MainActivity)
         .supportFragmentManager
         .beginTransaction()
-        .replace(R.id.container, FragmentSecond())
+        .replace(R.id.container, FragmentSecond()).apply {
+            arguments = bundleOf("second" to isCheked)
+        }
         .addToBackStack(null)
         .commit()
 }

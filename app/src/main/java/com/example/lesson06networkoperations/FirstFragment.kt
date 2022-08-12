@@ -20,22 +20,30 @@ class FirstFragment : Fragment() {
         return FragmentFirstBinding.inflate(inflater, container, false)
             .also { _binding = it }
             .root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         with(binding) {
 
             parentFragmentManager.setFragmentResultListener(
                 "result", viewLifecycleOwner
             ) { _, bundle ->
-                textResult.text = bundle.getString("key")
+                textResult.text = bundle./*getString("key")*/getBoolean("key").toString()
             }
             button.setOnClickListener {
-                pushSecondFragment()
+                val isChecked =
+                    textResult.text
+                        .takeIf { it.isNotEmpty() }?.toString()?.toBoolean() ?: false
+
+//                val isChecked = if (textResult.text.isEmpty()) {
+//                    false
+//                } else {
+//                    textResult.text.toString().toBoolean()
+//                }
+
+                pushSecondFragment(isChecked)
             }
         }
     }
